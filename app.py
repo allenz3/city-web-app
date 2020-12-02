@@ -3,38 +3,41 @@ import api_keys
 import urllib.parse, urllib.request, urllib.error, json
 import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+from forms import SearchForm
 
 # absolute path to my project directory, you can comment this out
 # os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'citywebapp'
 
+# city_name = ''
 
 @app.route("/")
 @app.route("/home")
 @app.route("/", methods=['POST', 'GET'])
 def home():
-    return render_template("home.html")
+    form = SearchForm()
+    if form.is_submitted():
+        result = request.form.get('search')
+        return weather(result)
+    return render_template('home.html', form=form)
 
-def get_name():
-    return request.args.get('cityName')
 
-
-@app.route("/location")
-def location():
-    return render_template("location.html")
+# def get_name():
+#     return request.args.get('cityName')
 
 
 @app.route("/weather")
-def weather():
+def weather(city_name):
+    print(city_name)
     # http://api.openweathermap.org/data/2.5/weather?q=London&appid=894aa641d6c1ca4942deb53c258952a4
     baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
-    string2 = {'q': get_name(), 'appid': api_keys.openweather_key}
+    string2 = {'q': city_name, 'appid': api_keys.openweather_key}
     paramstr2 = urllib.parse.urlencode(string2)
     request2 = baseurl2 + paramstr2
-    print('THis is the city name : ' + get_name())
-    print(request2)
+    print("REQUEST:" + request2)
     reader2 = urllib.request.urlopen(request2)
     readerstr2 = reader2.read()
     data2 = json.loads(readerstr2)
@@ -57,6 +60,11 @@ def weather():
 def unix_to_utc(time_param):
     real_time = datetime.datetime.fromtimestamp(time_param).strftime('%m-%d-%Y %H:%M:%S')
     return real_time
+
+
+@app.route("/location")
+def location():
+    return render_template("location.html")
 
 
 @app.route("/walkscore")

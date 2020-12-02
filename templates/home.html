@@ -1,10 +1,21 @@
 {% extends "page.html" %}
 
 {% block content %}
+<h2> Search </h2>
+<form action="" method="post">
+    <p>
+        {{form.search.label}} <br>
+        {{form.search(size=30)}}
+    </p>
+    <p>{{form.submit()}}</p>
+</form>
+{% endblock %}
+
+<!--
 <h1>Search a City Name</h1>
 <form id = "cityInput" action = "" method = "get">
     <label for = "cityName">Search for a city! </label>
     <input type = "text" name = "cityName" id = "cityName"/>
     <input type="submit" value="Search" name="submit" id="submit"/>
 </form>
-{% endblock %}
+-->
