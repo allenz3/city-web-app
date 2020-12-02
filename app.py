@@ -5,7 +5,6 @@ import datetime
 
 from flask import Flask, render_template, request
 
-city_name = ''
 # absolute path to my project directory, you can comment this out
 # os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
 
@@ -18,11 +17,8 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-
-def get_city_name():
-    city_name = request.form.get('text')
-    print(city_name)
-    return city_name
+def get_name():
+    return request.args.get('cityName')
 
 
 @app.route("/location")
@@ -34,9 +30,11 @@ def location():
 def weather():
     # http://api.openweathermap.org/data/2.5/weather?q=London&appid=894aa641d6c1ca4942deb53c258952a4
     baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
-    string2 = {'q': 'Seattle', 'appid': api_keys.openweather_key}
+    string2 = {'q': get_name(), 'appid': api_keys.openweather_key}
     paramstr2 = urllib.parse.urlencode(string2)
     request2 = baseurl2 + paramstr2
+    print('THis is the city name : ' + get_name())
+    print(request2)
     reader2 = urllib.request.urlopen(request2)
     readerstr2 = reader2.read()
     data2 = json.loads(readerstr2)

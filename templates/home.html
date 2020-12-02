@@ -2,6 +2,9 @@
 
 {% block content %}
 <h1>Search a City Name</h1>
-<input type="text" id="citySearch">
-<input type = "submit">
+<form id = "cityInput" action = "" method = "get">
+    <label for = "cityName">Search for a city! </label>
+    <input type = "text" name = "cityName" id = "cityName"/>
+    <input type="submit" value="Search" name="submit" id="submit"/>
+</form>
 {% endblock %}
