@@ -3,7 +3,7 @@ import api_keys
 import urllib.parse, urllib.request, urllib.error, json
 import datetime
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from forms import SearchForm
 
 # absolute path to my project directory, you can comment this out
@@ -12,7 +12,6 @@ from forms import SearchForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'citywebapp'
 
-# city_name = ''
 
 @app.route("/")
 @app.route("/home")
@@ -21,20 +20,18 @@ def home():
     form = SearchForm()
     if form.is_submitted():
         result = request.form.get('search')
-        return weather(result)
+        session['result'] = result
+
     return render_template('home.html', form=form)
-
-
 # def get_name():
 #     return request.args.get('cityName')
 
 
 @app.route("/weather")
-def weather(city_name):
-    print(city_name)
+def weather():
     # http://api.openweathermap.org/data/2.5/weather?q=London&appid=894aa641d6c1ca4942deb53c258952a4
     baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
-    string2 = {'q': city_name, 'appid': api_keys.openweather_key}
+    string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
     paramstr2 = urllib.parse.urlencode(string2)
     request2 = baseurl2 + paramstr2
     print("REQUEST:" + request2)
