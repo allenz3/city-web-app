@@ -2,7 +2,15 @@
 
 {% block content %}
 <h1>Weather & Climate</h1>
-<p>The temperature is {{temp_data}} °F </p>
-<p>The sunrise date and time is {{rise_time}}</p>
-<p>The sunset date and time is {{set_time}}</p>
+<p>The temperature is {{temperature}} °F.</p>
+<p>Today's date is {{date}}.</p>
+<p>The sun will rise at {{sunrise}} and the sun will set at {{sunset}}.</p>
+
+<h3>Hourly Forecast</h3>
+{% for report in hourly %}
+<p>
+    <img src="{{report.get('icon_url') }}" alt="Weather Icon"/>
+    {{report.get('forecast')}}
+</p>
+{% endfor %}
 {% endblock %}

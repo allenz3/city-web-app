@@ -22,7 +22,6 @@ def home():
     if form.is_submitted():
         result = request.form.get('search')
         session['result'] = result
-
     return render_template('home.html', form=form)
 
 
@@ -30,6 +29,7 @@ def home():
 def weather():
     # http://api.openweathermap.org/data/2.5/weather?q=London&appid=894aa641d6c1ca4942deb53c258952a4
     baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
+    print(session['result'])
     string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
     paramstr2 = urllib.parse.urlencode(string2)
     request2 = baseurl2 + paramstr2
@@ -47,10 +47,24 @@ def weather():
     reader = urllib.request.urlopen(rq)
     readerstr = reader.read()
     data = json.loads(readerstr)
-    temp = data.get('current').get('temp')
-    sr = unix_to_utc(data.get('current').get('sunrise'))
-    ss = unix_to_utc(data.get('current').get('sunset'))
-    return render_template("weather.html", data=data, temp_data=temp, rise_time=sr, set_time=ss)
+    temperature = data.get('current').get('temp')
+    sunrise = unix_to_utc(data.get('current').get('sunrise'))
+    date = sunrise[0:10]
+    sunrise_time = sunrise[11:]
+    sunset = unix_to_utc(data.get('current').get('sunset'))
+    sunset_time = sunset[11:]
+    raw_hourly = data.get('hourly')
+    count = 1
+    hourly = []
+    for hour in raw_hourly:
+        tempDict = {}
+        weather = hour.get("weather")[0]
+        tempDict['forecast'] = f"In {count} hour(s) from now: {weather.get('description')}"
+        tempDict['icon_url'] = f"http://openweathermap.org/img/wn/{weather.get('icon')}@2x.png"
+        hourly.append(tempDict)
+        count += 1
+    return render_template("weather.html", temperature=temperature, date=date, sunrise=sunrise_time, sunset=sunset_time,
+                           hourly=hourly)
 
 
 def unix_to_utc(time_param):
