@@ -16,6 +16,7 @@ app.config['SECRET_KEY'] = 'citywebapp'
 @app.route("/")
 @app.route("/home")
 @app.route("/", methods=['POST', 'GET'])
+@app.route("/home", methods=['POST', 'GET'])
 def home():
     form = SearchForm()
     if form.is_submitted():
@@ -23,8 +24,6 @@ def home():
         session['result'] = result
 
     return render_template('home.html', form=form)
-# def get_name():
-#     return request.args.get('cityName')
 
 
 @app.route("/weather")
@@ -34,7 +33,7 @@ def weather():
     string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
     paramstr2 = urllib.parse.urlencode(string2)
     request2 = baseurl2 + paramstr2
-    print("REQUEST:" + request2)
+    print("THIS IS THE LINK: " + request2)
     reader2 = urllib.request.urlopen(request2)
     readerstr2 = reader2.read()
     data2 = json.loads(readerstr2)
