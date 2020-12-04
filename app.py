@@ -20,16 +20,31 @@ app.config['SECRET_KEY'] = 'citywebapp'
 def home():
     form = SearchForm()
     if form.is_submitted():
+        # this is the city name
         result = request.form.get('search')
         session['result'] = result
+        # this code helps us get the coordinates of a city
+        baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
+        string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
+        paramstr2 = urllib.parse.urlencode(string2)
+        request2 = baseurl2 + paramstr2
+        print("THIS IS THE LINK: " + request2)
+        reader2 = urllib.request.urlopen(request2)
+        readerstr2 = reader2.read()
+        data2 = json.loads(readerstr2)
+        lat_city = data2.get('coord').get('lat')
+        lon_city = data2.get('coord').get('lon')
+        session['lat'] = lat_city
+        session['long'] = lon_city
+
+
     return render_template('home.html', form=form)
 
 
 @app.route("/weather")
 def weather():
-    # http://api.openweathermap.org/data/2.5/weather?q=London&appid=894aa641d6c1ca4942deb53c258952a4
+    # this will help us get the coordinates of a city
     baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
-    print(session['result'])
     string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
     paramstr2 = urllib.parse.urlencode(string2)
     request2 = baseurl2 + paramstr2
@@ -39,7 +54,10 @@ def weather():
     data2 = json.loads(readerstr2)
     lat_city = data2.get('coord').get('lat')
     lon_city = data2.get('coord').get('lon')
+    session['lat'] = lat_city
+    session['long'] = lon_city
 
+    #this will help us get the weather information of a city
     baseurl = 'https://api.openweathermap.org/data/2.5/onecall?'
     string = {'lat': str(lat_city), 'lon': str(lon_city), 'appid': api_keys.openweather_key, 'units': "imperial"}
     paramstr = urllib.parse.urlencode(string)
@@ -84,7 +102,8 @@ def walkscore():
 
 @app.route("/demographics")
 def demographics():
-    return render_template("demographics.html")
+    #this has the lat and long saved
+    return render_template("demographics.html", lat = session['lat'], long = session['long'])
 
 
 if __name__ == "__main__":
