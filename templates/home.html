@@ -4,8 +4,12 @@
 <h1>Search a City Name</h1>
 <form action="" method="post">
     <p>
-        {{form.search.label}} <br>
-        {{form.search(size=30)}}
+        {{form.city_search.label}} <br>
+        {{form.city_search(size=30)}}
+    </p>
+    <p>
+        {{form.state_search.label}} <br>
+        {{form.state_search(size=30)}}
     </p>
     <p>{{form.submit()}}</p>
 </form>

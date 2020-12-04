@@ -2,8 +2,20 @@
 
 {% block content %}
 <h1>Demographics</h1>
-<p>This is the latitude {{lat}}</p>
+<p>This is the latitude: {{lat}}</p>
+<p>This is the longitude: {{long}}</p>
+<p>This is the state code: {{state}}</p>
 
-<p>This is the longitude{{long}}</p>
+<h3>School Districts</h3>
+{% for district in districts %}
+<p>
+    {% for key in district.keys() %}
+    <p>{{key + ": " + district.get(key)}}</p>
+    {% endfor %}
+</p>
+<h6>-----------------------</h6>
+{% endfor %}
+
+<p>{{data}}</p>
 {% endblock %}
- <!-- THis is where the lat and long is stored -->
+<!-- This is where the lat and long is stored -->

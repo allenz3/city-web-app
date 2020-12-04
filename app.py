@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from forms import SearchForm
 
 # absolute path to my project directory, you can comment this out
-# os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
+os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'citywebapp'
@@ -21,8 +21,11 @@ def home():
     form = SearchForm()
     if form.is_submitted():
         # this is the city name
-        result = request.form.get('search')
+        result = request.form.get('city_search')
         session['result'] = result
+        # this is the state code
+        state_result = request.form.get('state_search')
+        session['state_result'] = state_result
         # this code helps us get the coordinates of a city
         baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
         string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
@@ -36,7 +39,6 @@ def home():
         lon_city = data2.get('coord').get('lon')
         session['lat'] = lat_city
         session['long'] = lon_city
-
 
     return render_template('home.html', form=form)
 
@@ -57,7 +59,7 @@ def weather():
     session['lat'] = lat_city
     session['long'] = lon_city
 
-    #this will help us get the weather information of a city
+    # this will help us get the weather information of a city
     baseurl = 'https://api.openweathermap.org/data/2.5/onecall?'
     string = {'lat': str(lat_city), 'lon': str(lon_city), 'appid': api_keys.openweather_key, 'units': "imperial"}
     paramstr = urllib.parse.urlencode(string)
@@ -102,8 +104,37 @@ def walkscore():
 
 @app.route("/demographics")
 def demographics():
-    #this has the lat and long saved
-    return render_template("demographics.html", lat = session['lat'], long = session['long'])
+    # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
+    # baseurl = "https://api.schooldigger.com/v1.2/districts?"
+    # paramDict = {'st': session['state_result'], 'boxLatitudeNW': session['lat'] - 0.3,
+    #              'boxLongitudeNW': session['long'] - 0.3, 'boxLatitudeSE': session['lat'] + 0.3,
+    #              'boxLongitudeSE': session['long'] + 0.3, 'sortBy': 'rank', 'appID': api_keys.schooldigger_app_id,
+    #              'appKey': api_keys.schooldigger_key}
+    # paramString = urllib.parse.urlencode(paramDict)
+    # request = baseurl + paramString
+    # print("THIS IS THE LINK: " + request)
+    # reader = urllib.request.urlopen(request)
+    # readerstr = reader.read()
+    # data = json.loads(readerstr)
+
+    # testing using local files
+    # feed = json.load(open(filename, encoding="utf-8"))
+    f = open('./schooldigger_data.json', encoding="utf-8")
+    data = json.load(f)
+    print(data)
+    # sort through JSON data and get important information
+    district_list = data.get('districtList')
+    districts = []
+    for district in district_list:
+        district_info = {}
+        district_info['District Name'] = district.get("districtName")
+        district_info['Phone Number'] = district.get("phone")
+        district_info['Street Address'] = district.get("address").get("street")
+        district_info['City'] = district.get("address").get("city")
+        district_info['State Code'] = district.get("address").get("state")
+        district_info['Zip Code'] = district.get("address").get("zip")
+        districts.append(district_info)
+    return render_template("demographics.html", data=data, lat=session['lat'], long=session['long'], state=session['state_result'], districts=districts)
 
 
 if __name__ == "__main__":

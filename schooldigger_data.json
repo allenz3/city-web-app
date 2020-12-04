@@ -1,0 +1,786 @@
+{
+  "numberOfDistricts": 128,
+  "numberOfPages": 13,
+  "districtList": [
+    {
+      "districtID": "2626130",
+      "districtName": "Novi Community School District",
+      "phone": "(248) 449-1234",
+      "url": "https://www.schooldigger.com/go/MI/district/26130/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.475687,
+          "longitude": -83.496794
+        },
+        "street": "25345 Taft Rd",
+        "city": "Novi",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48374",
+        "zip4": "2423",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Novi/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48374/search.aspx",
+        "html": "25345 Taft Rd<br />Novi, MI 48374-2423"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Oakland",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Oakland/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 10,
+      "numberPrimarySchools": 6,
+      "numberMiddleSchools": 2,
+      "numberHighSchools": 2,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 8,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 98.66,
+          "rankScore": 0.9550122
+        },
+        {
+          "year": 2018,
+          "rank": 26,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 95.94,
+          "rankScore": 0.9301254
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 6694,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 1131,
+          "numberOfTeachers": 429.9,
+          "numberOfTeachersPK": 17.3,
+          "numberOfTeachersK": 24,
+          "numberOfTeachersElementary": 163.9,
+          "numberOfTeachersSecondary": 168.6,
+          "numberOfAids": 45.7,
+          "numberOfCoordsSupervisors": 0,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 10,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 8,
+          "numberOfLibraryStaff": 0,
+          "numberOfLEAAdministrators": 14.1,
+          "numberOfLEASupportStaff": 4,
+          "numberOfSchoolAdministrators": 24,
+          "numberOfSchoolAdminSupportStaff": 50.5,
+          "numberOfStudentSupportStaff": 26.3,
+          "numberOfOtherSupportStaff": 86.5
+        }
+      ]
+    },
+    {
+      "districtID": "2625980",
+      "districtName": "Northville Public Schools",
+      "phone": "(248) 344-3508",
+      "url": "https://www.schooldigger.com/go/MI/district/25980/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.430602,
+          "longitude": -83.487127
+        },
+        "street": "405 W Main St",
+        "city": "Northville",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48167",
+        "zip4": "1577",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Northville/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48167/search.aspx",
+        "html": "405 W Main St<br />Northville, MI 48167-1577"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Wayne",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Wayne/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 11,
+      "numberPrimarySchools": 7,
+      "numberMiddleSchools": 2,
+      "numberHighSchools": 1,
+      "numberAlternativeSchools": 1,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 10,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 98.33,
+          "rankScore": 0.9545523
+        },
+        {
+          "year": 2018,
+          "rank": 14,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 97.81,
+          "rankScore": 0.9495824
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 7334,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 330,
+          "numberOfTeachers": 393.4,
+          "numberOfTeachersPK": 0,
+          "numberOfTeachersK": 19,
+          "numberOfTeachersElementary": 133.9,
+          "numberOfTeachersSecondary": 178.1,
+          "numberOfAids": 115.4,
+          "numberOfCoordsSupervisors": 0,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 10,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 1,
+          "numberOfLibraryStaff": 0,
+          "numberOfLEAAdministrators": 11,
+          "numberOfLEASupportStaff": 0,
+          "numberOfSchoolAdministrators": 23,
+          "numberOfSchoolAdminSupportStaff": 43.5,
+          "numberOfStudentSupportStaff": 41.6,
+          "numberOfOtherSupportStaff": 193.5
+        }
+      ]
+    },
+    {
+      "districtID": "2600997",
+      "districtName": "South Canton Scholars Charter Academy",
+      "phone": "(734) 398-5658",
+      "url": "https://www.schooldigger.com/go/MI/district/00997/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.284288,
+          "longitude": -83.484278
+        },
+        "street": "3085 South Canton Center Road",
+        "city": "Canton",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48188",
+        "zip4": "",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Canton/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48188/search.aspx",
+        "html": "3085 South Canton Center Road<br />Canton, MI 48188"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": false,
+      "county": {
+        "countyName": "Wayne",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Wayne/search.aspx"
+      },
+      "lowGrade": "K",
+      "highGrade": "8",
+      "numberTotalSchools": 1,
+      "numberPrimarySchools": 1,
+      "numberMiddleSchools": 0,
+      "numberHighSchools": 0,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 14,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 97.66,
+          "rankScore": 0.9465356
+        },
+        {
+          "year": 2018,
+          "rank": 11,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 98.28,
+          "rankScore": 0.9617297
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 780,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 141,
+          "numberOfTeachers": 36.6,
+          "numberOfTeachersPK": 0,
+          "numberOfTeachersK": 4,
+          "numberOfTeachersElementary": 18,
+          "numberOfTeachersSecondary": 9,
+          "numberOfAids": 10.5,
+          "numberOfCoordsSupervisors": 0,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 0,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 0,
+          "numberOfLibraryStaff": 0,
+          "numberOfLEAAdministrators": 4,
+          "numberOfLEASupportStaff": 0,
+          "numberOfSchoolAdministrators": 0,
+          "numberOfSchoolAdminSupportStaff": 2,
+          "numberOfStudentSupportStaff": 3,
+          "numberOfOtherSupportStaff": 5.8
+        }
+      ]
+    },
+    {
+      "districtID": "2606090",
+      "districtName": "Bloomfield Hills Schools",
+      "phone": "(248) 341-5405",
+      "url": "https://www.schooldigger.com/go/MI/district/06090/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.53348,
+          "longitude": -83.293101
+        },
+        "street": "7273 Wing Lake Rd",
+        "city": "Bloomfield Hills",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48301",
+        "zip4": "",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Bloomfield+Hills/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48301/search.aspx",
+        "html": "7273 Wing Lake Rd<br />Bloomfield Hills, MI 48301"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Oakland",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Oakland/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 11,
+      "numberPrimarySchools": 5,
+      "numberMiddleSchools": 3,
+      "numberHighSchools": 1,
+      "numberAlternativeSchools": 2,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 18,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 96.99,
+          "rankScore": 0.9266767
+        },
+        {
+          "year": 2018,
+          "rank": 25,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 96.09,
+          "rankScore": 0.9324255
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 5470,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 356,
+          "numberOfTeachers": 395.6,
+          "numberOfTeachersPK": 10.6,
+          "numberOfTeachersK": 17,
+          "numberOfTeachersElementary": 116,
+          "numberOfTeachersSecondary": 179.6,
+          "numberOfAids": 115,
+          "numberOfCoordsSupervisors": 7,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 13.6,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 6,
+          "numberOfLibraryStaff": 4.1,
+          "numberOfLEAAdministrators": 20,
+          "numberOfLEASupportStaff": 3,
+          "numberOfSchoolAdministrators": 41.6,
+          "numberOfSchoolAdminSupportStaff": 36,
+          "numberOfStudentSupportStaff": 89,
+          "numberOfOtherSupportStaff": 223.7
+        }
+      ]
+    },
+    {
+      "districtID": "2605850",
+      "districtName": "Birmingham Public Schools",
+      "phone": "(248) 203-3004",
+      "url": "https://www.schooldigger.com/go/MI/district/05850/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.517637,
+          "longitude": -83.243283
+        },
+        "street": "31301 Evergreen Rd",
+        "city": "Beverly Hills",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48025",
+        "zip4": "3800",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Beverly+Hills/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48025/search.aspx",
+        "html": "31301 Evergreen Rd<br />Beverly Hills, MI 48025-3800"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Oakland",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Oakland/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 14,
+      "numberPrimarySchools": 9,
+      "numberMiddleSchools": 3,
+      "numberHighSchools": 2,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 30,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 94.98,
+          "rankScore": 0.8935513
+        },
+        {
+          "year": 2018,
+          "rank": 30,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 95.31,
+          "rankScore": 0.9110578
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 8045,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 218,
+          "numberOfTeachers": 552.6,
+          "numberOfTeachersPK": 4.7,
+          "numberOfTeachersK": 30,
+          "numberOfTeachersElementary": 205,
+          "numberOfTeachersSecondary": 235.5,
+          "numberOfAids": 175.3,
+          "numberOfCoordsSupervisors": 0,
+          "numberOfGuidanceElem": 7,
+          "numberOfGuidanceSecondary": 12.6,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 13.5,
+          "numberOfLibraryStaff": 9.6,
+          "numberOfLEAAdministrators": 16.9,
+          "numberOfLEASupportStaff": 4,
+          "numberOfSchoolAdministrators": 56.4,
+          "numberOfSchoolAdminSupportStaff": 133.5,
+          "numberOfStudentSupportStaff": 51.3,
+          "numberOfOtherSupportStaff": 318.8
+        }
+      ]
+    },
+    {
+      "districtID": "2629940",
+      "districtName": "Rochester Community School District",
+      "phone": "(248) 726-3000",
+      "url": "https://www.schooldigger.com/go/MI/district/29940/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.6819,
+          "longitude": -83.1398
+        },
+        "street": "501 West University Dr",
+        "city": "Rochester",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48307",
+        "zip4": "1944",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Rochester/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48307/search.aspx",
+        "html": "501 West University Dr<br />Rochester, MI 48307-1944"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Oakland",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Oakland/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 23,
+      "numberPrimarySchools": 14,
+      "numberMiddleSchools": 3,
+      "numberHighSchools": 6,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 33,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 94.48,
+          "rankScore": 0.8886785
+        },
+        {
+          "year": 2018,
+          "rank": 32,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 95,
+          "rankScore": 0.9031266
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 15434,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 991,
+          "numberOfTeachers": 793.4,
+          "numberOfTeachersPK": 0,
+          "numberOfTeachersK": 46.7,
+          "numberOfTeachersElementary": 267.9,
+          "numberOfTeachersSecondary": 333.5,
+          "numberOfAids": 222.4,
+          "numberOfCoordsSupervisors": 12.3,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 26.9,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 19.8,
+          "numberOfLibraryStaff": 0,
+          "numberOfLEAAdministrators": 19,
+          "numberOfLEASupportStaff": 8,
+          "numberOfSchoolAdministrators": 64.3,
+          "numberOfSchoolAdminSupportStaff": 289.6,
+          "numberOfStudentSupportStaff": 217,
+          "numberOfOtherSupportStaff": 233.5
+        }
+      ]
+    },
+    {
+      "districtID": "2634260",
+      "districtName": "Troy School District",
+      "phone": "(248) 823-4000",
+      "url": "https://www.schooldigger.com/go/MI/district/34260/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.5834,
+          "longitude": -83.1486
+        },
+        "street": "4400 Livernois Rd",
+        "city": "Troy",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48098",
+        "zip4": "4777",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Troy/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48098/search.aspx",
+        "html": "4400 Livernois Rd<br />Troy, MI 48098-4777"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Oakland",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Oakland/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 21,
+      "numberPrimarySchools": 13,
+      "numberMiddleSchools": 4,
+      "numberHighSchools": 3,
+      "numberAlternativeSchools": 1,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 35,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 94.15,
+          "rankScore": 0.8856961
+        },
+        {
+          "year": 2018,
+          "rank": 36,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 94.38,
+          "rankScore": 0.8834279
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 13130,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 2128,
+          "numberOfTeachers": 785.6,
+          "numberOfTeachersPK": 5,
+          "numberOfTeachersK": 39,
+          "numberOfTeachersElementary": 261.1,
+          "numberOfTeachersSecondary": 362.1,
+          "numberOfAids": 102.3,
+          "numberOfCoordsSupervisors": 9.3,
+          "numberOfGuidanceElem": 2,
+          "numberOfGuidanceSecondary": 20,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 11,
+          "numberOfLibraryStaff": 7.6,
+          "numberOfLEAAdministrators": 20,
+          "numberOfLEASupportStaff": 6.2,
+          "numberOfSchoolAdministrators": 70.2,
+          "numberOfSchoolAdminSupportStaff": 81.3,
+          "numberOfStudentSupportStaff": 146.2,
+          "numberOfOtherSupportStaff": 358.1
+        }
+      ]
+    },
+    {
+      "districtID": "2600995",
+      "districtName": "Noor International Academy",
+      "phone": "(313) 565-0507",
+      "url": "https://www.schooldigger.com/go/MI/district/00995/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.56676,
+          "longitude": -83.087951
+        },
+        "street": "37412   Dequindre Rd",
+        "city": "Sterling Heights",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48310",
+        "zip4": "",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Sterling+Heights/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48310/search.aspx",
+        "html": "37412   Dequindre Rd<br />Sterling Heights, MI 48310"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": false,
+      "county": {
+        "countyName": "Macomb",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Macomb/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "6",
+      "numberTotalSchools": 1,
+      "numberPrimarySchools": 1,
+      "numberMiddleSchools": 0,
+      "numberHighSchools": 0,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 44,
+          "rankOf": 598,
+          "rankStars": 5,
+          "rankStatewidePercentage": 92.64,
+          "rankScore": 0.8700284
+        },
+        {
+          "year": 2018,
+          "rank": 110,
+          "rankOf": 640,
+          "rankStars": 4,
+          "rankStatewidePercentage": 82.81,
+          "rankScore": 0.7437845
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 154,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 121,
+          "numberOfTeachers": 10.7,
+          "numberOfTeachersPK": 0,
+          "numberOfTeachersK": 1,
+          "numberOfTeachersElementary": 8.3,
+          "numberOfTeachersSecondary": 0.3,
+          "numberOfAids": 5.3,
+          "numberOfCoordsSupervisors": 0,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 0,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 0,
+          "numberOfLibraryStaff": 0,
+          "numberOfLEAAdministrators": 1.1,
+          "numberOfLEASupportStaff": 0,
+          "numberOfSchoolAdministrators": 0,
+          "numberOfSchoolAdminSupportStaff": 0.7,
+          "numberOfStudentSupportStaff": 1.1,
+          "numberOfOtherSupportStaff": 1.9
+        }
+      ]
+    },
+    {
+      "districtID": "2605010",
+      "districtName": "Berkley School District",
+      "phone": "(248) 837-8000",
+      "url": "https://www.schooldigger.com/go/MI/district/05010/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.484769,
+          "longitude": -83.191695
+        },
+        "street": "14501 Talbot St",
+        "city": "Oak Park",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48237",
+        "zip4": "1160",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Oak+Park/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48237/search.aspx",
+        "html": "14501 Talbot St<br />Oak Park, MI 48237-1160"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Oakland",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Oakland/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 8,
+      "numberPrimarySchools": 6,
+      "numberMiddleSchools": 1,
+      "numberHighSchools": 1,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 61,
+          "rankOf": 598,
+          "rankStars": 4,
+          "rankStatewidePercentage": 89.8,
+          "rankScore": 0.8208457
+        },
+        {
+          "year": 2018,
+          "rank": 47,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 92.66,
+          "rankScore": 0.8600708
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 4360,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 81,
+          "numberOfTeachers": 262.5,
+          "numberOfTeachersPK": 7.7,
+          "numberOfTeachersK": 18,
+          "numberOfTeachersElementary": 89.7,
+          "numberOfTeachersSecondary": 110,
+          "numberOfAids": 78.9,
+          "numberOfCoordsSupervisors": 3,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 0,
+          "numberOfGuidanceTotal": 10.5,
+          "numberOfLibrarians": 7,
+          "numberOfLibraryStaff": 1,
+          "numberOfLEAAdministrators": 9.1,
+          "numberOfLEASupportStaff": 6,
+          "numberOfSchoolAdministrators": 27.8,
+          "numberOfSchoolAdminSupportStaff": 26.6,
+          "numberOfStudentSupportStaff": 18,
+          "numberOfOtherSupportStaff": 78.4
+        }
+      ]
+    },
+    {
+      "districtID": "2625740",
+      "districtName": "Grosse Pointe Public Schools",
+      "phone": "(313) 432-3000",
+      "url": "https://www.schooldigger.com/go/MI/district/25740/search.aspx",
+      "address": {
+        "latLong": {
+          "latitude": 42.3842,
+          "longitude": -82.9116
+        },
+        "street": "389 Saint Clair St",
+        "city": "Grosse Pointe",
+        "state": "MI",
+        "stateFull": "Michigan",
+        "zip": "48230",
+        "zip4": "1501",
+        "cityURL": "https://www.schooldigger.com/go/MI/city/Grosse+Pointe/search.aspx",
+        "zipURL": "https://www.schooldigger.com/go/MI/zip/48230/search.aspx",
+        "html": "389 Saint Clair St<br />Grosse Pointe, MI 48230-1501"
+      },
+      "locationIsWithinBoundary": null,
+      "hasBoundary": true,
+      "county": {
+        "countyName": "Wayne",
+        "countyURL": "https://www.schooldigger.com/go/MI/county/Wayne/search.aspx"
+      },
+      "lowGrade": "PK",
+      "highGrade": "12",
+      "numberTotalSchools": 15,
+      "numberPrimarySchools": 10,
+      "numberMiddleSchools": 3,
+      "numberHighSchools": 2,
+      "numberAlternativeSchools": 0,
+      "rankHistory": [
+        {
+          "year": 2019,
+          "rank": 72,
+          "rankOf": 598,
+          "rankStars": 4,
+          "rankStatewidePercentage": 87.96,
+          "rankScore": 0.7965323
+        },
+        {
+          "year": 2018,
+          "rank": 63,
+          "rankOf": 640,
+          "rankStars": 5,
+          "rankStatewidePercentage": 90.16,
+          "rankScore": 0.825283
+        }
+      ],
+      "districtYearlyDetails": [
+        {
+          "year": 2019,
+          "numberOfStudents": 7630,
+          "numberOfSpecialEdStudents": null,
+          "numberOfEnglishLanguageLearnerStudents": 82,
+          "numberOfTeachers": 468.1,
+          "numberOfTeachersPK": 0,
+          "numberOfTeachersK": 26,
+          "numberOfTeachersElementary": 136.1,
+          "numberOfTeachersSecondary": 229.4,
+          "numberOfAids": 117.5,
+          "numberOfCoordsSupervisors": 8.1,
+          "numberOfGuidanceElem": 0,
+          "numberOfGuidanceSecondary": 17.5,
+          "numberOfGuidanceTotal": 0,
+          "numberOfLibrarians": 7.1,
+          "numberOfLibraryStaff": 0,
+          "numberOfLEAAdministrators": 13,
+          "numberOfLEASupportStaff": 3,
+          "numberOfSchoolAdministrators": 24.8,
+          "numberOfSchoolAdminSupportStaff": 52.5,
+          "numberOfStudentSupportStaff": 66.3,
+          "numberOfOtherSupportStaff": 144.6
+        }
+      ]
+    }
+  ]
+}
