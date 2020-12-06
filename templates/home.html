@@ -1,7 +1,13 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1>Search a City Name</h1>
+<h1>Look up a city in the US!</h1>
+{% if isValid == 1 %}
+<h2 class="text-success">Input Submitted!</h2>
+{% endif %}
+{% if isValid == -1 %}
+<h2 class="text-danger">Invalid Input!</h2>
+{% endif %}
 <form action="" method="post">
     <p>
         {{form.city_search.label}} <br>
@@ -14,12 +20,4 @@
     <p>{{form.submit()}}</p>
 </form>
 {% endblock %}
-
-<!--
-<form id = "cityInput" action = "" method = "get">
-    <label for = "cityName">Search for a city! </label>
-    <input type = "text" name = "cityName" id = "cityName"/>
-    <input type="submit" value="Search" name="submit" id="submit"/>
-</form>
--->
 

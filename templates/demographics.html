@@ -2,11 +2,13 @@
 
 {% block content %}
 <h1>Demographics</h1>
-<p>This is the latitude: {{lat}}</p>
-<p>This is the longitude: {{long}}</p>
+<p>This is the city: {{city}}</p>
 <p>This is the state code: {{state}}</p>
 
-<h3>School Districts</h3>
+<h3>Top 10 School Districts</h3>
+{% if isValid == False %}
+<p class="text-danger">No school districts found or API request limit reached</p>
+{% endif %}
 {% for district in districts %}
 <p>
     {% for key in district.keys() %}
@@ -15,7 +17,5 @@
 </p>
 <h6>-----------------------</h6>
 {% endfor %}
-
-<p>{{data}}</p>
 {% endblock %}
 <!-- This is where the lat and long is stored -->
