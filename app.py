@@ -46,34 +46,24 @@ def home():
 @app.route("/weather")
 def weather():
     # this will help us get the coordinates of a city
-    baseurl2 = 'https://api.openweathermap.org/data/2.5/weather?'
-    string2 = {'q': session['result'], 'appid': api_keys.openweather_key}
-    paramstr2 = urllib.parse.urlencode(string2)
-    request2 = baseurl2 + paramstr2
-    print("THIS IS THE LINK: " + request2)
-    reader2 = urllib.request.urlopen(request2)
-    readerstr2 = reader2.read()
-    data2 = json.loads(readerstr2)
-    lat_city = data2.get('coord').get('lat')
-    lon_city = data2.get('coord').get('lon')
+    coords = api_call('https://api.openweathermap.org/data/2.5/weather?',
+                      {'q': session['result'], 'appid': api_keys.openweather_key})
+    lat_city = coords.get('coord').get('lat')
+    lon_city = coords.get('coord').get('lon')
     session['lat'] = lat_city
     session['long'] = lon_city
 
     # this will help us get the weather information of a city
-    baseurl = 'https://api.openweathermap.org/data/2.5/onecall?'
-    string = {'lat': str(lat_city), 'lon': str(lon_city), 'appid': api_keys.openweather_key, 'units': "imperial"}
-    paramstr = urllib.parse.urlencode(string)
-    rq = baseurl + paramstr
-    reader = urllib.request.urlopen(rq)
-    readerstr = reader.read()
-    data = json.loads(readerstr)
-    temperature = data.get('current').get('temp')
-    sunrise = unix_to_utc(data.get('current').get('sunrise'))
+    weatherData = api_call('https://api.openweathermap.org/data/2.5/onecall?',
+                           {'lat': str(lat_city), 'lon': str(lon_city), 'appid': api_keys.openweather_key,
+                            'units': "imperial"})
+    temperature = weatherData.get('current').get('temp')
+    sunrise = unix_to_utc(weatherData.get('current').get('sunrise'))
     date = sunrise[0:10]
     sunrise_time = sunrise[11:]
-    sunset = unix_to_utc(data.get('current').get('sunset'))
+    sunset = unix_to_utc(weatherData.get('current').get('sunset'))
     sunset_time = sunset[11:]
-    raw_hourly = data.get('hourly')
+    raw_hourly = weatherData.get('hourly')
     count = 1
     hourly = []
     for hour in raw_hourly:
@@ -105,17 +95,11 @@ def walkscore():
 @app.route("/demographics")
 def demographics():
     # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
-    # baseurl = "https://api.schooldigger.com/v1.2/districts?"
-    # paramDict = {'st': session['state_result'], 'boxLatitudeNW': session['lat'] - 0.3,
-    #              'boxLongitudeNW': session['long'] - 0.3, 'boxLatitudeSE': session['lat'] + 0.3,
-    #              'boxLongitudeSE': session['long'] + 0.3, 'sortBy': 'rank', 'appID': api_keys.schooldigger_app_id,
-    #              'appKey': api_keys.schooldigger_key}
-    # paramString = urllib.parse.urlencode(paramDict)
-    # request = baseurl + paramString
-    # print("THIS IS THE LINK: " + request)
-    # reader = urllib.request.urlopen(request)
-    # readerstr = reader.read()
-    # data = json.loads(readerstr)
+    # districtData = api_keys('https://api.schooldigger.com/v1.2/districts?',
+    #          {'st': session['state_result'], 'boxLatitudeNW': session['lat'] - 0.3,
+    #           'boxLongitudeNW': session['long'] - 0.3, 'boxLatitudeSE': session['lat'] + 0.3,
+    #           'boxLongitudeSE': session['long'] + 0.3, 'sortBy': 'rank', 'appID': api_keys.schooldigger_app_id,
+    #           'appKey': api_keys.schooldigger_key})
 
     # testing using local files
     # feed = json.load(open(filename, encoding="utf-8"))
@@ -123,18 +107,29 @@ def demographics():
     data = json.load(f)
     print(data)
     # sort through JSON data and get important information
-    district_list = data.get('districtList')
+    districtList = data.get('districtList')
     districts = []
-    for district in district_list:
-        district_info = {}
-        district_info['District Name'] = district.get("districtName")
-        district_info['Phone Number'] = district.get("phone")
-        district_info['Street Address'] = district.get("address").get("street")
-        district_info['City'] = district.get("address").get("city")
-        district_info['State Code'] = district.get("address").get("state")
-        district_info['Zip Code'] = district.get("address").get("zip")
-        districts.append(district_info)
-    return render_template("demographics.html", data=data, lat=session['lat'], long=session['long'], state=session['state_result'], districts=districts)
+    for district in districtList:
+        districtInfo = {}
+        districtInfo['District Name'] = district.get("districtName")
+        districtInfo['Phone Number'] = district.get("phone")
+        districtInfo['Street Address'] = district.get("address").get("street")
+        districtInfo['City'] = district.get("address").get("city")
+        districtInfo['State Code'] = district.get("address").get("state")
+        districtInfo['Zip Code'] = district.get("address").get("zip")
+        districts.append(districtInfo)
+    return render_template("demographics.html", data=data, lat=session['lat'], long=session['long'],
+                           state=session['state_result'], districts=districts)
+
+
+def api_call(baseurl, paramDict):
+    paramString = urllib.parse.urlencode(paramDict)
+    request = baseurl + paramString
+    print("THIS IS THE LINK: " + request)
+    reader = urllib.request.urlopen(request)
+    readerStr = reader.read()
+    data = json.loads(readerStr)
+    return data
 
 
 if __name__ == "__main__":
