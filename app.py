@@ -8,7 +8,6 @@ os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'citywebapp'
 
-
 @app.route("/")
 @app.route("/", methods=['POST', 'GET'])
 @app.route("/home")
@@ -22,8 +21,8 @@ def home():
         # some text inputted in both boxes
         if city_result != "" and state_result != "":
             # this will help us get the coordinates of a city
-            session['city_result'] = city_result
-            session['state_result'] = state_result
+            session['city_result'] = city_result.strip()
+            session['state_result'] = state_result.strip()
             coords = api_call('https://api.openweathermap.org/data/2.5/weather?',
                               {'q': session['city_result'], 'appid': api_keys.openweather_key})
             # valid input
@@ -83,24 +82,23 @@ def unix_to_utc(time_param):
 
 @app.route("/location")
 def location():
-    return render_template("location.html", latitude=session['latitude'], longitude=session['longitude'])
-
-
-@app.route("/walkscore")
-def walkscore():
-    return render_template("walkscore.html")
+    temp_city = session['city_result']
+    temp_city.replace(' ', '+')
+    return render_template("location.html", latitude=session['latitude'], longitude=session['longitude'],
+                           url=f"https://www.google.com/maps/embed/v1/search?key={api_keys.google_maps_key}&q={temp_city}")
 
 
 # gives the top ten school districts in a city
-@app.route("/demographics")
-def demographics():
+@app.route("/education")
+def education():
     # API Call for school digger
     # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
     districtData = api_call('https://api.schooldigger.com/v1.2/districts?',
-             {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
-              'boxLongitudeNW': session['longitude'] - 0.5, 'boxLatitudeSE': session['latitude'] + 0.5,
-              'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank', 'appID': api_keys.schooldigger_app_id,
-              'appKey': api_keys.schooldigger_key})
+                            {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
+                             'boxLongitudeNW': session['longitude'] - 0.5, 'boxLatitudeSE': session['latitude'] + 0.5,
+                             'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank',
+                             'appID': api_keys.schooldigger_app_id,
+                             'appKey': api_keys.schooldigger_key})
 
     # using data from local files
     # districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
@@ -110,8 +108,8 @@ def demographics():
         districtList = districtData.get('districtList')
         districts = []
         if len(districtList) == 0:
-            return render_template("demographics.html", city=session['city_result'], state=session['state_result'],
-                            districts=districts, isValid=False)
+            return render_template("education.html", city=session['city_result'], state=session['state_result'],
+                                   districts=districts, isValid=False)
         else:
             for district in districtList:
                 districtInfo = {}
@@ -122,12 +120,19 @@ def demographics():
                 districtInfo['State Code'] = district.get("address").get("state")
                 districtInfo['Zip Code'] = district.get("address").get("zip")
                 districts.append(districtInfo)
-            return render_template("demographics.html", city=session['city_result'], state=session['state_result'],
+            return render_template("education.html", city=session['city_result'], state=session['state_result'],
                                    districts=districts, isValid=True)
     # data was not successfully retrieved, return to home page with invalid input reminder
     else:
         return render_template('home.html', form=SearchForm(), isValid=-1)
 
+# @app.after_request
+# def add_header(r):
+#     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+#     r.headers["Pragma"] = "no-cache"
+#     r.headers["Expires"] = "0"
+#     r.headers['Cache-Control'] = 'public, max-age=0'
+#     return r
 
 def api_call(baseurl, paramDict):
     paramString = urllib.parse.urlencode(paramDict)
