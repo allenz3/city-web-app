@@ -3,10 +3,11 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from forms import SearchForm
 
 # absolute path to my project directory, you can comment this out
-os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
+#os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'citywebapp'
+
 
 @app.route("/")
 @app.route("/", methods=['POST', 'GET'])
@@ -83,7 +84,7 @@ def unix_to_utc(time_param):
 @app.route("/location")
 def location():
     temp_city = session['city_result']
-    temp_city.replace(' ', '+')
+    temp_city = temp_city.replace(' ', '+')
     return render_template("location.html", latitude=session['latitude'], longitude=session['longitude'],
                            url=f"https://www.google.com/maps/embed/v1/search?key={api_keys.google_maps_key}&q={temp_city}")
 
@@ -125,6 +126,7 @@ def education():
     # data was not successfully retrieved, return to home page with invalid input reminder
     else:
         return render_template('home.html', form=SearchForm(), isValid=-1)
+
 
 # @app.after_request
 # def add_header(r):
