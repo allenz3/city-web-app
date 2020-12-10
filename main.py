@@ -3,16 +3,22 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from forms import SearchForm
 
 # absolute path to my project directory, you can comment this out
-#os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
+# os.chdir("E:/UW/Autumn Quarter 2020/HCDE 310/Project/city-web-app")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'citywebapp'
 
-
+# @app.route("/", defaults={"form": SearchForm(), "isValid": 0}, methods=['POST', 'GET'])
+# @app.route("/<form>/<int:isValid>", methods=['POST', 'GET'])
+# @app.route("/home/", defaults={"form": SearchForm(), "isValid": 0}, methods=['POST', 'GET'])
+# @app.route("/home/<form>/<int:isValid>", methods=['POST', 'GET'])
+# @app.route("/home/<form>/<int:isValid>", methods=['POST', 'GET'])
+# /<SearchForm():form>/<int:isValid>
 @app.route("/")
 @app.route("/", methods=['POST', 'GET'])
 @app.route("/home")
 @app.route("/home", methods=['POST', 'GET'])
+# def home(form, isValid):
 def home():
     form = SearchForm()
     # Search button pressed
@@ -47,12 +53,16 @@ def home():
 # gives the temperature, date, sunrise/sunset, and hourly forecast of a city
 @app.route("/weather")
 def weather():
-    if session['latitude'] is None or session['longitude'] is None:
-        return render_template('home.html', form=SearchForm(), isValid=-1)
-    else:
+    try:
         weatherData = api_call('https://api.openweathermap.org/data/2.5/onecall?',
-                               {'lat': session['latitude'], 'lon': session['longitude'], 'appid': api_keys.openweather_key,
+                               {'lat': session['latitude'], 'lon': session['longitude'],
+                                'appid': api_keys.openweather_key,
                                 'units': "imperial"})
+    except:
+        # data was not successfully retrieved, return to home page with invalid input reminder
+        return render_template('home.html', form=SearchForm(), isValid=-1)
+        # return redirect(url_for('home', form=SearchForm(), isValid=-1))
+    else:
         # if the data was successfully retrieved
         if weatherData is not None:
             temperature = weatherData.get('current').get('temp')
@@ -74,7 +84,6 @@ def weather():
             return render_template("weather.html", temperature=temperature, date=date, sunrise=sunrise_time,
                                    sunset=sunset_time,
                                    hourly=hourly)
-        # data was not successfully retrieved, return to home page with invalid input reminder
         else:
             return render_template('home.html', form=SearchForm(), isValid=-1)
 
@@ -86,10 +95,11 @@ def unix_to_utc(time_param):
 
 @app.route("/location")
 def location():
-    if session['city_result'] is None:
+    try:
+        temp_city = session['city_result']
+    except:
         return render_template('home.html', form=SearchForm(), isValid=-1)
     else:
-        temp_city = session['city_result']
         temp_city = temp_city.replace(' ', '+')
         return render_template("location.html", latitude=session['latitude'], longitude=session['longitude'],
                                url=f"https://www.google.com/maps/embed/v1/search?key={api_keys.google_maps_key}&q={temp_city}")
@@ -98,19 +108,21 @@ def location():
 # gives the top ten school districts in a city
 @app.route("/education")
 def education():
-    if session['state_result'] is None or session['latitude'] is None or session['longitude'] is None:
-        return render_template('home.html', form=SearchForm(), isValid=-1)
-    else:
+    try:
         # API Call for school digger
         # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
         districtData = api_call('https://api.schooldigger.com/v1.2/districts?',
                                 {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
-                                 'boxLongitudeNW': session['longitude'] - 0.5, 'boxLatitudeSE': session['latitude'] + 0.5,
+                                 'boxLongitudeNW': session['longitude'] - 0.5,
+                                 'boxLatitudeSE': session['latitude'] + 0.5,
                                  'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank',
                                  'appID': api_keys.schooldigger_app_id,
                                  'appKey': api_keys.schooldigger_key})
-
+    except:
+        return render_template('home.html', form=SearchForm(), isValid=-1)
+    else:
         # using data from local files
+
         # districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
 
         # if the data was successfully retrieved
