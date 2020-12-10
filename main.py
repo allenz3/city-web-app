@@ -47,33 +47,36 @@ def home():
 # gives the temperature, date, sunrise/sunset, and hourly forecast of a city
 @app.route("/weather")
 def weather():
-    weatherData = api_call('https://api.openweathermap.org/data/2.5/onecall?',
-                           {'lat': session['latitude'], 'lon': session['longitude'], 'appid': api_keys.openweather_key,
-                            'units': "imperial"})
-    # if the data was successfully retrieved
-    if weatherData is not None:
-        temperature = weatherData.get('current').get('temp')
-        sunrise = unix_to_utc(weatherData.get('current').get('sunrise'))
-        date = sunrise[0:10]
-        sunrise_time = sunrise[11:]
-        sunset = unix_to_utc(weatherData.get('current').get('sunset'))
-        sunset_time = sunset[11:]
-        raw_hourly = weatherData.get('hourly')
-        count = 1
-        hourly = []
-        for hour in raw_hourly:
-            tempDict = {}
-            weather = hour.get("weather")[0]
-            tempDict['forecast'] = f"In {count} hour(s) from now: {weather.get('description')}"
-            tempDict['icon_url'] = f"http://openweathermap.org/img/wn/{weather.get('icon')}@2x.png"
-            hourly.append(tempDict)
-            count += 1
-        return render_template("weather.html", temperature=temperature, date=date, sunrise=sunrise_time,
-                               sunset=sunset_time,
-                               hourly=hourly)
-    # data was not successfully retrieved, return to home page with invalid input reminder
-    else:
+    if session['latitude'] is None or session['longitude'] is None:
         return render_template('home.html', form=SearchForm(), isValid=-1)
+    else:
+        weatherData = api_call('https://api.openweathermap.org/data/2.5/onecall?',
+                               {'lat': session['latitude'], 'lon': session['longitude'], 'appid': api_keys.openweather_key,
+                                'units': "imperial"})
+        # if the data was successfully retrieved
+        if weatherData is not None:
+            temperature = weatherData.get('current').get('temp')
+            sunrise = unix_to_utc(weatherData.get('current').get('sunrise'))
+            date = sunrise[0:10]
+            sunrise_time = sunrise[11:]
+            sunset = unix_to_utc(weatherData.get('current').get('sunset'))
+            sunset_time = sunset[11:]
+            raw_hourly = weatherData.get('hourly')
+            count = 1
+            hourly = []
+            for hour in raw_hourly:
+                tempDict = {}
+                weather = hour.get("weather")[0]
+                tempDict['forecast'] = f"In {count} hour(s) from now: {weather.get('description')}"
+                tempDict['icon_url'] = f"http://openweathermap.org/img/wn/{weather.get('icon')}@2x.png"
+                hourly.append(tempDict)
+                count += 1
+            return render_template("weather.html", temperature=temperature, date=date, sunrise=sunrise_time,
+                                   sunset=sunset_time,
+                                   hourly=hourly)
+        # data was not successfully retrieved, return to home page with invalid input reminder
+        else:
+            return render_template('home.html', form=SearchForm(), isValid=-1)
 
 
 def unix_to_utc(time_param):
@@ -83,49 +86,55 @@ def unix_to_utc(time_param):
 
 @app.route("/location")
 def location():
-    temp_city = session['city_result']
-    temp_city = temp_city.replace(' ', '+')
-    return render_template("location.html", latitude=session['latitude'], longitude=session['longitude'],
-                           url=f"https://www.google.com/maps/embed/v1/search?key={api_keys.google_maps_key}&q={temp_city}")
+    if session['city_result'] is None:
+        return render_template('home.html', form=SearchForm(), isValid=-1)
+    else:
+        temp_city = session['city_result']
+        temp_city = temp_city.replace(' ', '+')
+        return render_template("location.html", latitude=session['latitude'], longitude=session['longitude'],
+                               url=f"https://www.google.com/maps/embed/v1/search?key={api_keys.google_maps_key}&q={temp_city}")
 
 
 # gives the top ten school districts in a city
 @app.route("/education")
 def education():
-    # API Call for school digger
-    # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
-    districtData = api_call('https://api.schooldigger.com/v1.2/districts?',
-                            {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
-                             'boxLongitudeNW': session['longitude'] - 0.5, 'boxLatitudeSE': session['latitude'] + 0.5,
-                             'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank',
-                             'appID': api_keys.schooldigger_app_id,
-                             'appKey': api_keys.schooldigger_key})
-
-    # using data from local files
-    # districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
-
-    # if the data was successfully retrieved
-    if districtData is not None:
-        districtList = districtData.get('districtList')
-        districts = []
-        if len(districtList) == 0:
-            return render_template("education.html", city=session['city_result'], state=session['state_result'],
-                                   districts=districts, isValid=False)
-        else:
-            for district in districtList:
-                districtInfo = {}
-                districtInfo['District Name'] = district.get("districtName")
-                districtInfo['Phone Number'] = district.get("phone")
-                districtInfo['Street Address'] = district.get("address").get("street")
-                districtInfo['City'] = district.get("address").get("city")
-                districtInfo['State Code'] = district.get("address").get("state")
-                districtInfo['Zip Code'] = district.get("address").get("zip")
-                districts.append(districtInfo)
-            return render_template("education.html", city=session['city_result'], state=session['state_result'],
-                                   districts=districts, isValid=True)
-    # data was not successfully retrieved, return to home page with invalid input reminder
-    else:
+    if session['state_result'] is None or session['latitude'] is None or session['longitude'] is None:
         return render_template('home.html', form=SearchForm(), isValid=-1)
+    else:
+        # API Call for school digger
+        # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
+        districtData = api_call('https://api.schooldigger.com/v1.2/districts?',
+                                {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
+                                 'boxLongitudeNW': session['longitude'] - 0.5, 'boxLatitudeSE': session['latitude'] + 0.5,
+                                 'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank',
+                                 'appID': api_keys.schooldigger_app_id,
+                                 'appKey': api_keys.schooldigger_key})
+
+        # using data from local files
+        # districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
+
+        # if the data was successfully retrieved
+        if districtData is not None:
+            districtList = districtData.get('districtList')
+            districts = []
+            if len(districtList) == 0:
+                return render_template("education.html", city=session['city_result'], state=session['state_result'],
+                                       districts=districts, isValid=False)
+            else:
+                for district in districtList:
+                    districtInfo = {}
+                    districtInfo['District Name'] = district.get("districtName")
+                    districtInfo['Phone Number'] = district.get("phone")
+                    districtInfo['Street Address'] = district.get("address").get("street")
+                    districtInfo['City'] = district.get("address").get("city")
+                    districtInfo['State Code'] = district.get("address").get("state")
+                    districtInfo['Zip Code'] = district.get("address").get("zip")
+                    districts.append(districtInfo)
+                return render_template("education.html", city=session['city_result'], state=session['state_result'],
+                                       districts=districts, isValid=True)
+        # data was not successfully retrieved, return to home page with invalid input reminder
+        else:
+            return render_template('home.html', form=SearchForm(), isValid=-1)
 
 
 # @app.after_request
