@@ -1,3 +1,13 @@
 body {
-    background-color: #e6f9ff;
+    background-image: url("../images/city-night-wallpaper.jpg");
+    font-family: 'Open Sans', sans-serif;
+    color: whitesmoke;
+}
+
+h1 {
+    font-weight: bold;   
+}
+
+.success {
+    color: greenyellow;
 }

@@ -5,8 +5,10 @@
     <title>City Web App</title>
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='bootstrap-4.5.3-dist/css/bootstrap.min.css') }}">
-    <!--<link rel="stylesheet" type="text/css"
-          href="{{ url_for('static', filename='css/style.css') }}">-->
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -29,7 +31,7 @@
     </div>
 </nav>
 
-<div class="m-5">
+<div class="m-5 pl-3">
     {% block content %} {% endblock %}
 </div>
 

@@ -183,7 +183,7 @@ def safe_get(url):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
     # session.clear()
     session.pop("city_result", None)
     session.pop("state_result", None)
