@@ -21,6 +21,9 @@ app.config['SECRET_KEY'] = 'citywebapp'
 # def home(form, isValid):
 def home():
     form = SearchForm()
+    session['render_invalid_input'] = False
+    if session['render_invalid_input']:
+        return render_template('home.html', form=form, isValid=-1)
     # Search button pressed
     if form.is_submitted():
         city_result = request.form.get('city_search')
@@ -60,8 +63,8 @@ def weather():
                                 'units': "imperial"})
     except:
         # data was not successfully retrieved, return to home page with invalid input reminder
-        return render_template('home.html', form=SearchForm(), isValid=-1)
-        # return redirect(url_for('home', form=SearchForm(), isValid=-1))
+        #return render_template('home.html', form=SearchForm(), isValid=-1)
+        return redirect(url_for('home', form=SearchForm(), isValid=-1))
     else:
         # if the data was successfully retrieved
         if weatherData is not None:
@@ -85,7 +88,9 @@ def weather():
                                    sunset=sunset_time,
                                    hourly=hourly)
         else:
-            return render_template('home.html', form=SearchForm(), isValid=-1)
+            #return render_template('home.html', form=SearchForm(), isValid=-1)
+            session['render_invalid_input'] = True
+            return redirect('/home')
 
 
 def unix_to_utc(time_param):
@@ -158,6 +163,7 @@ def education():
 #     return r
 
 def api_call(baseurl, paramDict):
+
     paramString = urllib.parse.urlencode(paramDict)
     request = baseurl + paramString
     print("THIS IS THE LINK: " + request)
