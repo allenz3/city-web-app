@@ -8,12 +8,7 @@ from forms import SearchForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'citywebapp'
 
-# @app.route("/", defaults={"form": SearchForm(), "isValid": 0}, methods=['POST', 'GET'])
-# @app.route("/<form>/<int:isValid>", methods=['POST', 'GET'])
-# @app.route("/home/", defaults={"form": SearchForm(), "isValid": 0}, methods=['POST', 'GET'])
-# @app.route("/home/<form>/<int:isValid>", methods=['POST', 'GET'])
-# @app.route("/home/<form>/<int:isValid>", methods=['POST', 'GET'])
-# /<SearchForm():form>/<int:isValid>
+
 @app.route("/")
 @app.route("/", methods=['POST', 'GET'])
 @app.route("/home")
@@ -90,7 +85,7 @@ def weather():
                                    sunset=sunset_time,
                                    hourly=hourly)
         else:
-            #return render_template('home.html', form=SearchForm(), isValid=-1)
+            # return render_template('home.html', form=SearchForm(), isValid=-1)
             session['render_invalid_input'] = True
             return redirect('/home')
 
@@ -118,20 +113,18 @@ def education():
     try:
         # API Call for school digger
         # https://api.schooldigger.com/v1.2/districts?st=MI&boxLatitudeNW=42.7&boxLongitudeNW=-83.5&boxLatitudeSE=42.2&boxLongitudeSE=-82.9&sortBy=rank&appID=73eb2e3f&appKey=969aded5acde08d49a26da440d06e372
-        districtData = api_call('https://api.schooldigger.com/v1.2/districts?',
-                                {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
-                                 'boxLongitudeNW': session['longitude'] - 0.5,
-                                 'boxLatitudeSE': session['latitude'] + 0.5,
-                                 'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank',
-                                 'appID': api_keys.schooldigger_app_id,
-                                 'appKey': api_keys.schooldigger_key})
+        # districtData = api_call('https://api.schooldigger.com/v1.2/districts?',
+        #                         {'st': session['state_result'], 'boxLatitudeNW': session['latitude'] - 0.5,
+        #                          'boxLongitudeNW': session['longitude'] - 0.5,
+        #                          'boxLatitudeSE': session['latitude'] + 0.5,
+        #                          'boxLongitudeSE': session['longitude'] + 0.5, 'sortBy': 'rank',
+        #                          'appID': api_keys.schooldigger_app_id,
+        #                          'appKey': api_keys.schooldigger_key})
+        # using data from local files
+        districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
     except:
         return render_template('home.html', form=SearchForm(), isValid=-1)
     else:
-        # using data from local files
-
-        # districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
-
         # if the data was successfully retrieved
         if districtData is not None:
             districtList = districtData.get('districtList')
@@ -156,16 +149,7 @@ def education():
             return render_template('home.html', form=SearchForm(), isValid=-1)
 
 
-# @app.after_request
-# def add_header(r):
-#     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-#     r.headers["Pragma"] = "no-cache"
-#     r.headers["Expires"] = "0"
-#     r.headers['Cache-Control'] = 'public, max-age=0'
-#     return r
-
 def api_call(baseurl, paramDict):
-
     paramString = urllib.parse.urlencode(paramDict)
     request = baseurl + paramString
     print("THIS IS THE LINK: " + request)
@@ -192,8 +176,3 @@ def safe_get(url):
 
 if __name__ == "__main__":
     app.run(debug=True)
-    # session.clear()
-    session.pop("city_result", None)
-    session.pop("state_result", None)
-    session.pop("latitude", None)
-    session.pop("longitude", None)

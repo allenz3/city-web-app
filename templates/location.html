@@ -1,14 +1,15 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1>Location</h1>
+<h1 class="pb-3">Location</h1>
 
-<p>This is the latitude: {{latitude}}</p>
-<p>This is the longitude: {{longitude}}</p>
+<p>City Latitude: <span class="font-weight-bold">{{latitude}}</span></p>
+<p>City Longitude: <span class="font-weight-bold">{{longitude}}</span></p>
 <iframe
   width="900"
   height="500"
-  frameborder="0" style="border:0"
-  src={{url}} allowfullscreen>
+  frameborder="0"
+  src={{url}} allowfullscreen
+  class="map mt-3">
 </iframe>
 {% endblock %}

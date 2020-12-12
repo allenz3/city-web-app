@@ -1,21 +1,27 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1>Education</h1>
-<p>This is the city: {{city}}</p>
-<p>This is the state code: {{state}}</p>
+<h1 class="pb-3">Education</h1>
+<p>City: <span class="font-weight-bold">{{city}}</span></p>
+<p>State Code: <span class="font-weight-bold">{{state}}</span></p>
 
-<h3>Top 10 School Districts</h3>
-{% if isValid == False %}
-<p class="text-danger">No school districts found or API request limit reached</p>
-{% endif %}
-{% for district in districts %}
-<p>
-    {% for key in district.keys() %}
-    <p>{{key + ": " + district.get(key)}}</p>
-    {% endfor %}
-</p>
-<h6>-----------------------</h6>
-{% endfor %}
+<div>
+    <h1 class="pt-3">Top 10 School Districts</h1>
+    {% if isValid == False %}
+    <p class="text-danger">No school districts found or API request limit reached</p>
+    {% else %}
+    <div class="flexbox-container-outer">
+        {% for district in districts %}
+        <div class="flexbox-container-inner-2 card mt-5 mb-5">
+            {% for key in district.keys() %}
+            <div class="row">
+                <span class="flexbox-item-1">{{key}}</span>
+                <span class="flexbox-item-2">{{district.get(key)}}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
-<!-- This is where the lat and long is stored -->
