@@ -6,11 +6,16 @@
 <p>Today's date is {{date}}.</p>
 <p>The sun will rise at {{sunrise}} and the sun will set at {{sunset}}.</p>
 
-<h3>Hourly Forecast</h3>
-{% for report in hourly %}
-<p>
-    <img src="{{report.get('icon_url') }}" alt="Weather Icon"/>
-    {{report.get('forecast')}}
-</p>
-{% endfor %}
+<div id="hourly-forecast">
+    <h3>Hourly Forecast</h3>
+    {% for report in hourly %}
+    <div class="forecast-cards card mt-5 mb-5">
+      <div class="card-body">
+        <img src="{{report.get('icon_url') }}" alt="Weather Icon"/>
+        {{report.get('forecast')}}
+        <div class="temperature">{{report.get('temperature')}}</div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

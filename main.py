@@ -63,8 +63,8 @@ def weather():
                                 'units': "imperial"})
     except:
         # data was not successfully retrieved, return to home page with invalid input reminder
-        #return render_template('home.html', form=SearchForm(), isValid=-1)
-        return redirect(url_for('home', form=SearchForm(), isValid=-1))
+        return render_template('home.html', form=SearchForm(), isValid=-1)
+        # return redirect(url_for('home', form=SearchForm(), isValid=-1))
     else:
         # if the data was successfully retrieved
         if weatherData is not None:
@@ -80,6 +80,8 @@ def weather():
             for hour in raw_hourly:
                 tempDict = {}
                 weather = hour.get("weather")[0]
+                temperature = hour.get("temp")
+                tempDict['temperature'] = temperature
                 tempDict['forecast'] = f"In {count} hour(s) from now: {weather.get('description')}"
                 tempDict['icon_url'] = f"http://openweathermap.org/img/wn/{weather.get('icon')}@2x.png"
                 hourly.append(tempDict)

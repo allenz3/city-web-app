@@ -1,5 +1,7 @@
 body {
     background-image: url("../images/city-night-wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
     color: whitesmoke;
 }
@@ -10,4 +12,21 @@ h1 {
 
 .success {
     color: greenyellow;
+}
+
+#hourly-forecast {
+}
+
+.forecast-cards {
+    float: left;
+    color: #004d99;
+    background-color: #fff9e6;
+    margin: auto;
+    width: 60%;
+}
+
+.temperature {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
