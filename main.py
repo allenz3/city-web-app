@@ -69,21 +69,34 @@ def weather():
             sunrise_time = sunrise[11:]
             sunset = unix_to_utc(weatherData.get('current').get('sunset'))
             sunset_time = sunset[11:]
+            # hourly forecast
             raw_hourly = weatherData.get('hourly')
             count = 1
             hourly = []
             for hour in raw_hourly:
                 tempDict = {}
                 weather = hour.get("weather")[0]
-                temperature = hour.get("temp")
-                tempDict['temperature'] = temperature
+                tempDict['temperature'] = hour.get("temp")
                 tempDict['forecast'] = f"In {count} hour(s) from now: {weather.get('description')}"
                 tempDict['icon_url'] = f"http://openweathermap.org/img/wn/{weather.get('icon')}@2x.png"
                 hourly.append(tempDict)
                 count += 1
+            # daily forecast
+            raw_daily = weatherData.get('daily')
+            count = 1
+            daily = []
+            for day in raw_daily:
+                tempDict = {}
+                weather = day.get("weather")[0]
+                tempDict['min_temperature'] = day.get("temp").get("min")
+                tempDict['max_temperature'] = day.get("temp").get("max")
+                tempDict['forecast'] = f"In {count} day(s) from now: {weather.get('description')}"
+                tempDict['icon_url'] = f"http://openweathermap.org/img/wn/{weather.get('icon')}@2x.png"
+                daily.append(tempDict)
+                count += 1
             return render_template("weather.html", temperature=temperature, date=date, sunrise=sunrise_time,
                                    sunset=sunset_time,
-                                   hourly=hourly)
+                                   hourly=hourly, daily=daily)
         else:
             # return render_template('home.html', form=SearchForm(), isValid=-1)
             session['render_invalid_input'] = True

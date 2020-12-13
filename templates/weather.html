@@ -2,11 +2,11 @@
 
 {% block content %}
 <h1 class="pb-3">Weather</h1>
-<p>City Temperature: <span class="font-weight-bold">{{temperature}} °F</span></p>
+<p>Current City Temperature: <span class="font-weight-bold">{{temperature}} °F</span></p>
 <p>Today's Date: <span class="font-weight-bold">{{date}}</span></p>
 <p>Sunrise Time: <span class="font-weight-bold">{{sunrise}}</span></p>
 <p>Sunset Time: <span class="font-weight-bold">{{sunset}}</span></p>
-
+<br>
 <!--Hourly Forecast-->
 <div class="accordion">
     <button type="button" class="accordion__button">Hourly Forecast</button>
@@ -19,6 +19,24 @@
             </span>
                 <span class="flexbox-item-1">{{report.get('forecast')}}</span>
                 <span class="flexbox-item-1">{{report.get('temperature')}} °F</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br>
+<!--Daily Forecast-->
+<div class="accordion">
+    <button type="button" class="accordion__button">Daily Forecast</button>
+    <div class="accordion__content">
+        <div class="flexbox-container-outer pb-5">
+            {% for report in daily %}
+            <div class="flexbox-container-inner-weather card ml-5 mt-5 pr-3">
+            <span class="flexbox-item-1">
+                <img src="{{report.get('icon_url')}}" alt="Weather Icon"/>
+            </span>
+                <span class="flexbox-item-1">{{report.get('forecast')}}</span>
+                <span class="flexbox-item-1">{{report.get('min_temperature')}} °F to {{report.get('max_temperature')}} °F</span>
             </div>
             {% endfor %}
         </div>

@@ -33,7 +33,7 @@ h1 {
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #e6f5ff;
+    background-color: #72b8e7;
 }
 
 .flexbox-container-inner-education {
@@ -56,14 +56,14 @@ h1 {
 
 .flexbox-item-1 {
     flex-grow: 1;
-    color: #000066;
+    color: #000000;
     text-align: center;
 }
 
 .flexbox-item-2 {
     flex-grow: 1;
     margin-left: 1rem;
-    color: #000066;
+    color: #000000;
     text-align: center;
     padding-left: 1rem;
     border-left: 5px solid #005c99;
@@ -72,7 +72,7 @@ h1 {
 /* Accordion for Weather Forecasts */
 .accordion__button {
     display: block;
-    width: 100%;
+    width: 80%;
     padding: 1rem;
     border: none;
     outline: none;
@@ -81,6 +81,7 @@ h1 {
     color: #ffffff;
     text-align: left;
     transition: background 0.2s;
+    border-radius: 20px;
 }
 
 .accordion__button::after {
@@ -110,6 +111,7 @@ h1 {
 
     padding: 0 1rem;
     background: #000066;
+    width: 80%;
 
     display: none;
     overflow: auto;
