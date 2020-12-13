@@ -34,50 +34,50 @@ def safe_get(url):
         print("Reason: ", e.reason)
     return None
 
-
-def get_photo_ids(tag, n=100, sort="relevance"):
+def get_photo_info(tag, n=100, sort="relevance"):
     r = flickrREST(params={"tags": tag, "per_page": n, "sort": sort})
     requeststr = r.read()
     data = json.loads(requeststr)
     if data.get("stat") == "ok":
-        ids = [photo.get("id") for photo in data.get("photos").get("photo")]
-        return ids
+        # print(data.get("photos").get("photo"))
+        return data.get("photos").get("photo")
     else:
         return {}
 
+# def get_photo_ids(tag, n=100, sort="relevance"):
+#     r = flickrREST(params={"tags": tag, "per_page": n, "sort": sort})
+#     requeststr = r.read()
+#     data = json.loads(requeststr)
+#     print(data)
+#     if data.get("stat") == "ok":
+#         ids = [photo.get("id") for photo in data.get("photos").get("photo")]
+#         return ids
+#     else:
+#         return {}
+#
+# # print(get_photo_ids("Seattle"))
+#
+# def get_photo_info(photoid):
+#     r = flickrREST(method='flickr.photos.search',
+#                    params={"photo_id": photoid})
+#     requeststr = r.read()
+#     data = json.loads(requeststr)
+#     if data.get("stat") == "ok":
+#         return data.get("photos").get("photo")
+#     else:  # data.get("stat") == "fail"
+#         return {}
 
-def get_photo_info(photoid):
-    r = flickrREST(method='flickr.photos.getInfo',
-                   params={"photo_id": photoid})
-    requeststr = r.read()
-    data = json.loads(requeststr)
-    if data.get("stat") == "ok":
-        return data.get("photo")
-    else:  # data.get("stat") == "fail"
-        return {}
 
 
 class Photo():
     """A class to represent a photo from Flickr"""
 
     def __init__(self, infoDict):
-        self.title = infoDict.get("title").get("_content")
-        self.author = infoDict.get("owner").get("username")
-        self.userid = infoDict.get("owner").get("nsid")
-        self.tags = [tag.get("_content") for tag in infoDict.get("tags").get("tag")]
-        self.comment_count = infoDict.get("comments").get("_content")
-        self.num_views = infoDict.get("views")
-        self.url = infoDict.get("urls").get("url")[0].get("_content")
-        self.farm = infoDict.get("farm")
         self.server = infoDict.get("server")
         self.id = infoDict.get("id")
         self.secret = infoDict.get("secret")
 
     def make_photo_url(self, size="q"):
-        if size == None:
+        if size is None:
             return f"https://live.staticflickr.com/{self.server}/{self.id}_{self.secret}.jpg"
         return f"https://live.staticflickr.com/{self.server}/{self.id}_{self.secret}_{size}.jpg"
-
-    # https://live.staticflickr.com/65535/50592221298_6401a66bde_b.jpg
-    def __str__(self):
-        return f"~~~{self.title}~~~\nauthor: {self.author}\nnumber of tags: {len(self.tags)}\nviews: {self.num_views}\ncomments: {self.comment_count}\nurl: {self.url}"

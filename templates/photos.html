@@ -1,11 +1,11 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1 class="pb-3">Top 10 photos of {{city}} by views</h1>
+<h1 class="pb-3">10 photos of {{city}}</h1>
 
 <div>
-  {% for photo in views %}
-    <img src = "{{photo.make_photo_url()}}" alt="{{photo.title}}"/>
+  {% for photo in photos %}
+    <img src = "{{photo.make_photo_url()}}" alt="Photo of {{city}}"/>
   {% endfor %}
 </div>
 

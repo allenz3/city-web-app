@@ -121,7 +121,7 @@ def education():
         #                          'appID': api_keys.schooldigger_app_id,
         #                          'appKey': api_keys.schooldigger_key})
         # using data from local files
-        districtData = json.load(open('./schooldigger_data.json', encoding="utf-8"))
+        districtData = json.load(open('./json/schooldigger_data.json', encoding="utf-8"))
     except:
         return render_template('home.html', form=SearchForm(), isValid=-1)
     else:
@@ -148,18 +148,17 @@ def education():
         else:
             return render_template('home.html', form=SearchForm(), isValid=-1)
 
-
+# , "interestingness-desc"
 @app.route("/photos")
 def photos():
     try:
-        ids = Photo.get_photo_ids(session['city_result'], 100, "interestingness-desc")
+        photos_info = Photo.get_photo_info(session['city_result'], 10)
+        photos = [Photo.Photo(photo_info) for photo_info in photos_info]
+        print(photos)
     except:
         return render_template('home.html', form=SearchForm(), isValid=-1)
     else:
-        photos = [Photo.Photo(Photo.get_photo_info(id)) for id in ids]
-        photos_by_views = sorted(photos, key=lambda photo: photo.num_views, reverse=True)
-        top_10_views = photos_by_views[:10]
-        return render_template("photos.html", views=top_10_views, city=session['city_result'])
+        return render_template("photos.html", photos=photos, city=session['city_result'])
 
 
 def api_call(baseurl, paramDict):
