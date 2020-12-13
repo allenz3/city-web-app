@@ -14,12 +14,19 @@ h1 {
     color: greenyellow;
 }
 
+/* Location Page */
+.map {
+    border: 5px outset #005c99;
+    border-radius: 10px;
+}
+
+/* Flexbox Code used for Weather and Education Pages */
 .flexbox-container-outer {
     display: flex;
     flex-direction: column;
 }
 
-.flexbox-container-inner {
+.flexbox-container-inner-weather {
     display: flex;
     flex-direction: row;
     width: 60%;
@@ -29,7 +36,7 @@ h1 {
     background-color: #e6f5ff;
 }
 
-.flexbox-container-inner-2 {
+.flexbox-container-inner-education {
     display: flex;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -62,7 +69,48 @@ h1 {
     border-left: 5px solid #005c99;
 }
 
-.map {
-    border: 5px outset #005c99;
-    border-radius: 10px;
+/* Accordion for Weather Forecasts */
+.accordion__button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #333333;
+    color: #ffffff;
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.accordion__button::after {
+    content: "\25be";
+    float: right;
+    transform: scale(1.5);
+}
+
+.accordion__button--active + .accordion__content {
+    display: block;
+}
+
+.accordion__button--active {
+    background: #555555
+}
+
+.accordion__button--active::after {
+    content: "\25b4"
+}
+
+.accordion__content {
+    /*
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s;
+    */
+
+    padding: 0 1rem;
+    background: #000066;
+
+    display: none;
+    overflow: auto;
 }
