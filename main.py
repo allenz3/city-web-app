@@ -161,17 +161,16 @@ def education():
         else:
             return render_template('home.html', form=SearchForm(), isValid=-1)
 
-# , "interestingness-desc"
+
 @app.route("/photos")
 def photos():
     try:
-        photos_info = Photo.get_photo_info(session['city_result'], 10)
+        photos_info = Photo.get_photo_info(session['city_result'], session['city_result'], 10)
         photos = [Photo.Photo(photo_info) for photo_info in photos_info]
-        print(photos)
     except:
         return render_template('home.html', form=SearchForm(), isValid=-1)
     else:
-        return render_template("photos.html", photos=photos, city=session['city_result'])
+        return render_template("photos.html", photos=photos, city=session['city_result'], state=session['state_result'])
 
 
 def api_call(baseurl, paramDict):

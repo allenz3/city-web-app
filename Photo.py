@@ -34,8 +34,10 @@ def safe_get(url):
         print("Reason: ", e.reason)
     return None
 
-def get_photo_info(tag, n=100, sort="relevance"):
-    r = flickrREST(params={"tags": tag, "per_page": n, "sort": sort})
+
+# , "interestingness-desc"
+def get_photo_info(tag, text, n=100, sort="relevance"):
+    r = flickrREST(params={"tags": tag, "text": text, "per_page": n, "sort": sort})
     requeststr = r.read()
     data = json.loads(requeststr)
     if data.get("stat") == "ok":
@@ -43,6 +45,7 @@ def get_photo_info(tag, n=100, sort="relevance"):
         return data.get("photos").get("photo")
     else:
         return {}
+
 
 # def get_photo_ids(tag, n=100, sort="relevance"):
 #     r = flickrREST(params={"tags": tag, "per_page": n, "sort": sort})
@@ -66,7 +69,6 @@ def get_photo_info(tag, n=100, sort="relevance"):
 #         return data.get("photos").get("photo")
 #     else:  # data.get("stat") == "fail"
 #         return {}
-
 
 
 class Photo():
