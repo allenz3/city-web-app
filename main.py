@@ -159,7 +159,7 @@ def photos():
         photos = [Photo.Photo(Photo.get_photo_info(id)) for id in ids]
         photos_by_views = sorted(photos, key=lambda photo: photo.num_views, reverse=True)
         top_10_views = photos_by_views[:10]
-        return render_template("photos.html", views=top_10_views)
+        return render_template("photos.html", views=top_10_views, city=session['city_result'])
 
 
 def api_call(baseurl, paramDict):
