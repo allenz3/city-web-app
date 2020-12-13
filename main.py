@@ -1,4 +1,4 @@
-import os, api_keys, urllib.parse, urllib.request, urllib.error, json, datetime
+import os, api_keys, urllib.parse, urllib.request, urllib.error, json, datetime, Photo
 from flask import Flask, render_template, request, redirect, url_for, session
 from forms import SearchForm
 
@@ -148,6 +148,22 @@ def education():
         else:
             return render_template('home.html', form=SearchForm(), isValid=-1)
 
+@app.route("/photos")
+def photos():
+    try:
+        p_ids = Photo.get_photo_ids(text=session['city_result'], n=10)
+    except:
+        return render_template('home.html', form=SearchForm(), isValid=-1)
+    else:
+        photo_info_list = [Photo.get_photo_info(identification) for identification in p_ids]
+        photo_list = [Photo.Photo(info) for info in photo_info_list]
+        sortedViews = sorted(photo_list, key=lambda x: x.num_views, reverse=True)
+        for ph in sortedViews[:10]:
+            print(ph)
+
+        return render_template("photos.html", views= sortedViews)
+
+
 
 def api_call(baseurl, paramDict):
     paramString = urllib.parse.urlencode(paramDict)
@@ -172,6 +188,22 @@ def safe_get(url):
         print("We failed to reach a server")
         print("Reason: ", e.reason)
     return None
+
+def flickrREST(baseurl = 'https://api.flickr.com/services/rest/',
+    method = 'flickr.photos.search',
+    api_key = api_keys.flickr_key,
+    format = 'json',
+    params={},
+    printurl = False
+    ):
+    params['method'] = method
+    params['api_key'] = api_key
+    params['format'] = format
+    if format == "json": params["nojsoncallback"]=True
+    url = baseurl + "?" + urllib.parse.urlencode(params)
+    if printurl:
+        print(url)
+    return safe_get(url)
 
 
 if __name__ == "__main__":
