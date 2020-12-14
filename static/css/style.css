@@ -5,25 +5,43 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: whitesmoke;
     font-size: medium;
-    line-height: 1.5;
 }
 
 h1 {
-    font-weight: bold;   
+    font-weight: bold;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
+
+h4 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
 p {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.bold {
     font-weight: bold;
 }
 
-
 .success {
     color: greenyellow;
+}
+
+/* Generic Page */
+.container {
+    margin-top: 3rem;
+    margin-left: 3rem;
 }
 
 /* Location Page */
 .map {
     border: 5px outset #005c99;
     border-radius: 10px;
+    margin-top: 2rem;
 }
 
 /* Flexbox Code used for Weather and Education Pages */
@@ -33,23 +51,29 @@ p {
 }
 
 .flexbox-container-inner-weather {
+    border: 5px outset #72b8e7;
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 90%;
     height: 100%;
     justify-content: center;
     align-items: center;
     background-color: #72b8e7;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .flexbox-container-inner-education {
+    border: 5px outset #72b8e7;
     display: flex;
-    padding-top: 1rem;
     padding-bottom: 1rem;
     flex-direction: column;
-    width: 60%;
-    height: 100%;
     background-color: #e6f5ff;
+    width: 90%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .row {
@@ -82,6 +106,12 @@ p {
     padding: 1rem;
     outline: none;
     cursor: pointer;
+    border-top: 5px;
+    border-left: 5px;
+    border-right: 5px;
+    border-bottom: 5px;
+    border-style: outset;
+    border-color: #333333;
     background: #333333;
     color: #ffffff;
     text-align: left;
@@ -97,10 +127,17 @@ p {
 
 .accordion__button--active + .accordion__content {
     display: block;
+    border-radius: 0px 0px 20px 20px;
 }
 
 .accordion__button--active {
-    background: #E6F5FF;
+    border-top: 5px;
+    border-left: 5px;
+    border-right: 5px;
+    border-bottom: 0px;
+    border-style: outset;
+    border-color: #333333;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .accordion__button--active::after {
@@ -116,9 +153,13 @@ p {
 
     padding: 0 1rem;
     background: #E6F5FF;
+    border-top: 0px;
+    border-left: 5px;
+    border-right: 5px;
+    border-bottom: 5px;
+    border-style: outset;
+    border-color: #E6F5FF;
     width: 80%;
     display: none;
     overflow: auto;
-    border-radius: 20px;
-
 }

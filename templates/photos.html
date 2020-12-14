@@ -1,12 +1,12 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1 class="pb-3">10 photos of {{city}}, {{state}}</h1>
-
+<h1>10 photos of {{city}}, {{state}}</h1>
+<p class="text-danger">Disclaimer: All photos are taken from the Flickr API, which can yield some unpredictable results
+    from time to time. Please browse at your own discretion!</p>
 <div>
-  {% for photo in photos %}
-    <img src = "{{photo.make_photo_url()}}" alt="Photo of {{city}}"/>
-  {% endfor %}
+    {% for photo in photos %}
+    <img name="slide" src="{{photo.make_photo_url()}}" alt="Photo of {{city}}"/>
+    {% endfor %}
 </div>
-
 {% endblock %}

@@ -1,17 +1,17 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1 class="pb-3">Education</h1>
-<h4>City: <span class="font-weight-bold">{{city}}</span></h4>
-<h4>State Code: <span class="font-weight-bold">{{state}}</span></h4>
+<h1>Education</h1>
+<h4>City: <span class="bold">{{city}}</span></h4>
+<h4>State Code: <span class="bold">{{state}}</span></h4>
 
 <div>
-    <h1 class="pt-3">Top 10 School Districts</h1>
-    <h4 class="text-danger">No school districts found or API request limit reached</h4>
-    <h4>Here is sample data instead:</h4>
+    <h1>Top 10 School Districts</h1>
+    <p class="text-danger">The API used for this section has issues returning data correctly on a regular basis, so as
+        a proof of concept here's a sampling of the API data taken with Detroit, MI passed in as the location:</p>
     <div class="flexbox-container-outer">
         {% for district in districts %}
-        <div class="flexbox-container-inner-education card mt-5 mb-5">
+        <div class="flexbox-container-inner-education card">
             {% for key in district.keys() %}
             <div class="row">
                 <span class="flexbox-item-1">{{key}}</span>

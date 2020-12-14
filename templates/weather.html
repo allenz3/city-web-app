@@ -1,19 +1,19 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1 class="pb-3">Weather</h1>
-<h4>Current City Temperature: <span class="font-weight-bold">{{temperature}} °F</span></h4>
-<h4>Today's Date: <span class="font-weight-bold">{{date}}</span></h4>
-<h4>Sunrise Time: <span class="font-weight-bold">{{sunrise}}</span></h4>
-<h4>Sunset Time: <span class="font-weight-bold">{{sunset}}</span></h4>
+<h1>Weather</h1>
+<h4>Current City Temperature: <span class="bold">{{temperature}} °F</span></h4>
+<h4>Today's Date: <span class="bold">{{date}}</span></h4>
+<h4>Sunrise Time: <span class="bold">{{sunrise}}</span></h4>
+<h4>Sunset Time: <span class="bold">{{sunset}}</span></h4>
 <br>
 <!--Hourly Forecast-->
 <div class="accordion">
     <button type="button" class="accordion__button">Hourly Forecast</button>
     <div class="accordion__content">
-        <div class="flexbox-container-outer pb-5">
+        <div class="flexbox-container-outer">
             {% for report in hourly %}
-            <div class="flexbox-container-inner-weather card ml-5 mt-5 pr-3">
+            <div class="flexbox-container-inner-weather card">
             <span class="flexbox-item-1">
                 <img src="{{report.get('icon_url')}}" alt="Weather Icon"/>
             </span>
@@ -29,9 +29,9 @@
 <div class="accordion">
     <button type="button" class="accordion__button">Daily Forecast</button>
     <div class="accordion__content">
-        <div class="flexbox-container-outer pb-5">
+        <div class="flexbox-container-outer">
             {% for report in daily %}
-            <div class="flexbox-container-inner-weather card ml-5 mt-5 pr-3">
+            <div class="flexbox-container-inner-weather card">
             <span class="flexbox-item-1">
                 <img src="{{report.get('icon_url')}}" alt="Weather Icon"/>
             </span>

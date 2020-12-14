@@ -13,3 +13,21 @@ document.querySelectorAll('.accordion__button').forEach(button => {
 var i = 0;
 var images = []
 var time = 3000;
+
+// Image List
+
+
+// Change Image
+function changeImg() {
+    document.slide.src = images[i]
+
+    if(i < images.length - 1) {
+        i++
+    } else {
+        i = 0;
+    }
+
+    setTimeout("changeImg()", time);
+}
+
+window.onload = changeImg

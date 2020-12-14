@@ -1,7 +1,7 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1 class="pt-3 pb-3">Look up a city in the US!</h1>
+<h1>Look up a city in the US!</h1>
 {% if isValid == 1 %}
 <h2 class="success">Input Submitted!</h2>
 {% endif %}
@@ -9,7 +9,7 @@
 <h2 class="text-danger">Invalid Input!</h2>
 {% endif %}
 <form action="/" method="post">
-    <h3 class="pt-3">
+    <h3>
         {{form.city_search.label}} <br>
         {{form.city_search(size=30)}}
     </h3>
@@ -19,6 +19,7 @@
         {{form.state_search(size=30)}}
     </h3>
     <br>
-    <h3 class="pt-5 pb-5">{{form.submit()}}</h3>
+    <br>
+    <h3>{{form.submit()}}</h3>
 </form>
 {% endblock %}

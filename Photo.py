@@ -1,7 +1,6 @@
 import urllib.request, urllib.error, urllib.parse, json, webbrowser, api_keys
 
 
-### Utility functions you may want to use
 def pretty(obj):
     return json.dumps(obj, sort_keys=True, indent=2)
 
@@ -35,7 +34,6 @@ def safe_get(url):
     return None
 
 
-# , "interestingness-desc"
 def get_photo_info(tag, text, n=100, sort="relevance"):
     r = flickrREST(params={"tags": tag, "text": text, "per_page": n, "sort": sort})
     requeststr = r.read()
@@ -47,30 +45,6 @@ def get_photo_info(tag, text, n=100, sort="relevance"):
         return {}
 
 
-# def get_photo_ids(tag, n=100, sort="relevance"):
-#     r = flickrREST(params={"tags": tag, "per_page": n, "sort": sort})
-#     requeststr = r.read()
-#     data = json.loads(requeststr)
-#     print(data)
-#     if data.get("stat") == "ok":
-#         ids = [photo.get("id") for photo in data.get("photos").get("photo")]
-#         return ids
-#     else:
-#         return {}
-#
-# # print(get_photo_ids("Seattle"))
-#
-# def get_photo_info(photoid):
-#     r = flickrREST(method='flickr.photos.search',
-#                    params={"photo_id": photoid})
-#     requeststr = r.read()
-#     data = json.loads(requeststr)
-#     if data.get("stat") == "ok":
-#         return data.get("photos").get("photo")
-#     else:  # data.get("stat") == "fail"
-#         return {}
-
-
 class Photo():
     """A class to represent a photo from Flickr"""
 
@@ -79,7 +53,7 @@ class Photo():
         self.id = infoDict.get("id")
         self.secret = infoDict.get("secret")
 
-    def make_photo_url(self, size="q"):
+    def make_photo_url(self, size="w"):
         if size is None:
             return f"https://live.staticflickr.com/{self.server}/{self.id}_{self.secret}.jpg"
         return f"https://live.staticflickr.com/{self.server}/{self.id}_{self.secret}_{size}.jpg"
