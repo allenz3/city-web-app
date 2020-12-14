@@ -134,7 +134,8 @@ def education():
         #                          'appID': api_keys.schooldigger_app_id,
         #                          'appKey': api_keys.schooldigger_key})
         # using data from local files
-        districtData = json.load(open('./json/schooldigger_data.json', encoding="utf-8"))
+        if session['city_result'] is not None and session['state_result'] is not None:
+            districtData = json.load(open('./json/schooldigger_data.json', encoding="utf-8"))
     except:
         return render_template('home.html', form=SearchForm(), isValid=-1)
     else:

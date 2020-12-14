@@ -5,7 +5,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: whitesmoke;
     font-size: medium;
-
+    line-height: 1.5;
 }
 
 h1 {
@@ -93,22 +93,18 @@ p {
     content: "\25be";
     float: right;
     transform: scale(1.5);
-    border-radius: 20px;
 }
 
 .accordion__button--active + .accordion__content {
     display: block;
-    border-radius: 20px;
 }
 
 .accordion__button--active {
     background: #E6F5FF;
-    border-radius: 20px;
 }
 
 .accordion__button--active::after {
     content: "\25b4"
-    border-radius: 20px;
 }
 
 .accordion__content {

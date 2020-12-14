@@ -9,3 +9,7 @@ document.querySelectorAll('.accordion__button').forEach(button => {
         // }
     });
 });
+
+var i = 0;
+var images = []
+var time = 3000;
