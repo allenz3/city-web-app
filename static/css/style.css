@@ -4,11 +4,17 @@ body {
     background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
     color: whitesmoke;
+    font-size: medium;
+
 }
 
 h1 {
     font-weight: bold;   
 }
+p {
+    font-weight: bold;
+}
+
 
 .success {
     color: greenyellow;
@@ -74,7 +80,6 @@ h1 {
     display: block;
     width: 80%;
     padding: 1rem;
-    border: none;
     outline: none;
     cursor: pointer;
     background: #333333;
@@ -88,18 +93,22 @@ h1 {
     content: "\25be";
     float: right;
     transform: scale(1.5);
+    border-radius: 20px;
 }
 
 .accordion__button--active + .accordion__content {
     display: block;
+    border-radius: 20px;
 }
 
 .accordion__button--active {
-    background: #555555
+    background: #E6F5FF;
+    border-radius: 20px;
 }
 
 .accordion__button--active::after {
     content: "\25b4"
+    border-radius: 20px;
 }
 
 .accordion__content {
@@ -110,9 +119,10 @@ h1 {
     */
 
     padding: 0 1rem;
-    background: #000066;
+    background: #E6F5FF;
     width: 80%;
-
     display: none;
     overflow: auto;
+    border-radius: 20px;
+
 }

@@ -2,14 +2,13 @@
 
 {% block content %}
 <h1 class="pb-3">Education</h1>
-<p>City: <span class="font-weight-bold">{{city}}</span></p>
-<p>State Code: <span class="font-weight-bold">{{state}}</span></p>
+<h4>City: <span class="font-weight-bold">{{city}}</span></h4>
+<h4>State Code: <span class="font-weight-bold">{{state}}</span></h4>
 
 <div>
     <h1 class="pt-3">Top 10 School Districts</h1>
-    {% if isValid == False %}
-    <p class="text-danger">No school districts found or API request limit reached</p>
-    {% else %}
+    <h4 class="text-danger">No school districts found or API request limit reached</h4>
+    <h4>Here is sample data instead:</h4>
     <div class="flexbox-container-outer">
         {% for district in districts %}
         <div class="flexbox-container-inner-education card mt-5 mb-5">
@@ -22,6 +21,5 @@
         </div>
         {% endfor %}
     </div>
-    {% endif %}
 </div>
 {% endblock %}

@@ -144,7 +144,7 @@ def education():
             districts = []
             if len(districtList) == 0:
                 return render_template("education.html", city=session['city_result'], state=session['state_result'],
-                                       districts=districts, isValid=False)
+                                       districts=districts)
             else:
                 for district in districtList:
                     districtInfo = {}
@@ -156,7 +156,7 @@ def education():
                     districtInfo['Zip Code'] = district.get("address").get("zip")
                     districts.append(districtInfo)
                 return render_template("education.html", city=session['city_result'], state=session['state_result'],
-                                       districts=districts, isValid=True)
+                                       districts=districts)
         # data was not successfully retrieved, return to home page with invalid input reminder
         else:
             return render_template('home.html', form=SearchForm(), isValid=-1)
