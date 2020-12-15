@@ -10,6 +10,7 @@ document.querySelectorAll('.accordion__button').forEach(button => {
     });
 });
 
+/*
 var i = 0;
 var images = []
 var time = 3000;
@@ -22,7 +23,7 @@ function changeImg() {
     document.slide.src = images[i]
 
     if(i < images.length - 1) {
-        i++
+        i++;
     } else {
         i = 0;
     }
@@ -31,3 +32,5 @@ function changeImg() {
 }
 
 window.onload = changeImg
+
+*/

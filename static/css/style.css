@@ -29,6 +29,17 @@ p {
 
 .success {
     color: greenyellow;
+    padding-bottom: 1rem;
+}
+
+.failure {
+    color: red;
+    padding-bottom: 1rem;
+}
+
+.warning {
+    color: red;
+    width: 60%;
 }
 
 /* Generic Page */

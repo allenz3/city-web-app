@@ -2,11 +2,27 @@
 
 {% block content %}
 <h1>10 photos of {{city}}, {{state}}</h1>
-<p class="text-danger">Disclaimer: All photos are taken from the Flickr API, which can yield some unpredictable results
+<p class="warning">Disclaimer: All photos are taken from the Flickr API, which can yield some unpredictable results
     from time to time. Please browse at your own discretion!</p>
 <div>
-    {% for photo in photos %}
-    <img name="slide" src="{{photo.make_photo_url()}}" alt="Photo of {{city}}"/>
-    {% endfor %}
+    <img name="slide" src="{{photos[0].make_photo_url()}}" alt="Photo of {{city}}"/>
 </div>
+<script>
+    var i = 0;
+    var time = 3000;
+    var images_url = [{%for photo in photos%}"{{photo.make_photo_url()}}"{% if not loop.last %},{% endif %}{% endfor %}];
+
+    function changeImg() {
+        document.slide.src = images_url[i];
+        if(i < images_url.length - 1) {
+            i++;
+        } else {
+            i = 0;
+        }
+
+        setTimeout("changeImg()", time);
+    }
+
+window.onload = changeImg
+</script>
 {% endblock %}
