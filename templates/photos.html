@@ -4,25 +4,35 @@
 <h1>10 photos of {{city}}, {{state}}</h1>
 <p class="warning">Disclaimer: All photos are taken from the Flickr API, which can yield some unpredictable results
     from time to time. Please browse at your own discretion!</p>
-<div>
-    <img name="slide" src="{{photos[0].make_photo_url()}}" alt="Photo of {{city}}"/>
+<button id="prevButton">Prev</button>
+<button id="nextButton">Next</button>
+<div class="carousel-container">
+    <div class="carousel-slide">
+        <img name="slide" src="{{photos[0].make_photo_url()}}" alt="Photo of {{city}}"/>
+    </div>
 </div>
 <script>
-    var i = 0;
-    var time = 3000;
-    var images_url = [{%for photo in photos%}"{{photo.make_photo_url()}}"{% if not loop.last %},{% endif %}{% endfor %}];
+var i = 0;
+var images_url = [{%for photo in photos%}"{{photo.make_photo_url()}}"{% if not loop.last %},{% endif %}{% endfor %}];
+const prevButton = document.querySelector('#prevButton');
+const nextButton = document.querySelector('#nextButton');
 
-    function changeImg() {
-        document.slide.src = images_url[i];
-        if(i < images_url.length - 1) {
+prevButton.addEventListener('click', ()=>{
+    if(i > 0) {
+            i--;
+        } else {
+            i = images_url.length - 1;
+        }
+    document.slide.src = images_url[i];
+});
+
+nextButton.addEventListener('click', ()=>{
+    if(i < images_url.length - 1) {
             i++;
         } else {
             i = 0;
         }
-
-        setTimeout("changeImg()", time);
-    }
-
-window.onload = changeImg
+    document.slide.src = images_url[i];
+});
 </script>
 {% endblock %}
